@@ -23,8 +23,19 @@ export default function AboutPage() {
 
       {/* Page Header - Playful & Wide */}
       <section className="relative py-24 overflow-hidden">
+        {/* Soft Watercolor Background */}
+        <div className="absolute inset-0 z-0 opacity-30">
+          <Image 
+            src="/images/backgrounds/about_hero_bg.png"
+            alt="Soft watercolor background"
+            fill
+            className="object-cover mix-blend-multiply"
+            priority
+          />
+        </div>
+
         {/* Massive background text for depth */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[18rem] font-heading font-bold text-slate-100/70 select-none pointer-events-none -z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[18rem] font-heading font-bold text-slate-100/70 select-none pointer-events-none z-0">
           STORY
         </div>
         

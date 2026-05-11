@@ -2,21 +2,22 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ZoomIn } from "lucide-react";
+import { X, ZoomIn, Sparkles, Filter } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const CATEGORIES = ["All", "Events", "Classroom", "Activities", "Celebrations"];
 
 const galleryImages = [
-  { id: 1, src: "https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?auto=format&fit=crop&q=80&w=800", category: "Events", alt: "Sports Day" },
-  { id: 2, src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800", category: "Classroom", alt: "Classroom Learning" },
-  { id: 3, src: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800", category: "Activities", alt: "Art Workshop" },
-  { id: 4, src: "https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=800", category: "Celebrations", alt: "Annual Function" },
-  { id: 5, src: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&q=80&w=800", category: "Events", alt: "Field Trip" },
-  { id: 6, src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800", category: "Activities", alt: "Group Play" },
-  { id: 7, src: "https://images.unsplash.com/photo-1503454537195-1dc53482d740?auto=format&fit=crop&q=80&w=800", category: "Classroom", alt: "Story Time" },
-  { id: 8, src: "https://images.unsplash.com/photo-1530103862676-de88b505ffce?auto=format&fit=crop&q=80&w=800", category: "Celebrations", alt: "Festival Celebration" },
-  { id: 9, src: "https://images.unsplash.com/photo-1543269664-7eef42226a21?auto=format&fit=crop&q=80&w=800", category: "Classroom", alt: "Puzzles" },
+  { id: 1, src: "https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?auto=format&fit=crop&q=80&w=800", category: "Events", alt: "Sports Day", span: "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2", style: "clean" },
+  { id: 2, src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800", category: "Classroom", alt: "Classroom Learning", span: "col-span-1", style: "polaroid" },
+  { id: 3, src: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=800", category: "Activities", alt: "Art Workshop", span: "col-span-1 row-span-2", style: "clean" },
+  { id: 4, src: "https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=800", category: "Celebrations", alt: "Annual Function", span: "col-span-1", style: "polaroid" },
+  { id: 5, src: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&q=80&w=800", category: "Events", alt: "Field Trip", span: "col-span-2 lg:col-span-2", style: "clean" },
+  { id: 6, src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800", category: "Activities", alt: "Group Play", span: "col-span-1", style: "polaroid" },
+  { id: 7, src: "https://images.unsplash.com/photo-1503454537195-1dc53482d740?auto=format&fit=crop&q=80&w=800", category: "Classroom", alt: "Story Time", span: "col-span-1", style: "clean" },
+  { id: 8, src: "https://images.unsplash.com/photo-1530103862676-de88b505ffce?auto=format&fit=crop&q=80&w=800", category: "Celebrations", alt: "Festival Celebration", span: "col-span-2 lg:col-span-1", style: "polaroid" },
+  { id: 9, src: "https://images.unsplash.com/photo-1543269664-7eef42226a21?auto=format&fit=crop&q=80&w=800", category: "Classroom", alt: "Puzzles", span: "col-span-2 lg:col-span-1", style: "clean" },
 ];
 
 export default function GalleryPage() {
@@ -28,81 +29,157 @@ export default function GalleryPage() {
     : galleryImages.filter(img => img.category === activeCategory);
 
   return (
-    <div className="pt-10 pb-24 min-h-screen">
-      <section className="bg-brand-lavender-light/30 py-16 relative overflow-hidden">
+    <div className="relative pt-20 pb-24 min-h-screen bg-slate-50 overflow-hidden">
+      {/* Main Page Background */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <Image 
+          src="/images/backgrounds/gallery_bg.png"
+          alt="Gallery background"
+          fill
+          className="object-cover mix-blend-multiply"
+          priority
+        />
+      </div>
+
+      {/* Page Header - Playful & Dynamic */}
+      <section className="bg-white/70 backdrop-blur-md py-12 relative overflow-hidden z-10 border-b border-white/50">
+        {/* Background Gradients */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-lavender/10 rounded-full filter blur-3xl opacity-30"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-sky/10 rounded-full filter blur-3xl opacity-30"></div>
+        
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-100 text-brand-lavender font-semibold text-sm mb-3 mx-auto"
+          >
+            <Sparkles className="w-4 h-4 fill-current text-brand-yellow" />
+            Captured Memories
+          </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-slate-800 mb-4"
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl font-heading font-bold text-slate-800 mb-3 leading-tight"
           >
-            Photo <span className="text-brand-lavender">Gallery</span>
+            Our Beautiful <span className="text-gradient">Moments</span>
           </motion.h1>
+          
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto"
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed"
           >
-            A visual journey through the wonderful moments and memories created at Daya Little Step.
+            A visual journey through the wonderful moments, activities, and memories created at Daya School.
           </motion.p>
         </div>
       </section>
 
-      <section className="py-12">
+      <section className="py-10 relative z-10">
         <div className="container mx-auto px-4 md:px-6">
           
-          {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeCategory === category
-                    ? "bg-brand-lavender text-white shadow-md"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          {/* Creative Filters */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+            <div className="flex items-center gap-2 text-slate-600 font-medium">
+              <Filter className="w-5 h-5 text-brand-lavender" />
+              Filter by Category:
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-3">
+              {CATEGORIES.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={cn(
+                    "px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-sm",
+                    activeCategory === category
+                      ? "bg-brand-lavender text-white shadow-brand-lavender/20 shadow-lg scale-105"
+                      : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-100"
+                  )}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Masonry-style Grid (CSS Columns) */}
-          <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          {/* Asymmetric Scrapbook Grid - Responsive Mosaic */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[150px] md:auto-rows-[250px]">
             <AnimatePresence>
-              {filteredImages.map((image) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  key={image.id}
-                  className="relative rounded-2xl overflow-hidden group cursor-pointer break-inside-avoid shadow-sm hover:shadow-xl transition-all aspect-square"
-                  onClick={() => setSelectedImage(image.src)}
-                >
-                  <Image src={image.src} alt={image.alt} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform duration-300 delay-100">
-                      <ZoomIn className="w-6 h-6" />
+              {filteredImages.map((image, idx) => {
+                const isPolaroid = image.style === "polaroid";
+                
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    key={image.id}
+                    className={cn(
+                      "relative cursor-pointer group transition-all duration-500",
+                      image.span,
+                      isPolaroid 
+                        ? "bg-white p-3 md:p-4 pb-8 md:pb-12 shadow-lg hover:shadow-xl rounded-sm border border-slate-100 transform hover:-translate-y-2 lg:rotate-1" 
+                        : "rounded-2xl md:rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2"
+                    )}
+                    onClick={() => setSelectedImage(image.src)}
+                  >
+                    {/* Image Container */}
+                    <div className={cn(
+                      "relative w-full h-full",
+                      isPolaroid ? "rounded-sm overflow-hidden h-[80%] md:h-[85%]" : "rounded-2xl md:rounded-[2rem] overflow-hidden"
+                    )}>
+                      <Image 
+                        src={image.src} 
+                        alt={image.alt} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                      />
+                      
+                      {/* Overlay for Clean style */}
+                      {!isPolaroid && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform duration-300">
+                              <ZoomIn className="w-5 h-5 md:w-6 md:h-6" />
+                            </div>
+                          </div>
+                          
+                          <div className="absolute bottom-3 md:bottom-5 left-3 md:left-5 right-3 md:right-5">
+                            <span className="text-white font-heading font-bold text-sm md:text-lg block mb-0.5 md:mb-1">{image.alt}</span>
+                            <span className="text-white/80 text-[10px] md:text-xs px-2 py-0.5 bg-white/20 rounded-full backdrop-blur-sm">{image.category}</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  
-                  {/* Label */}
-                  <div className="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="glass px-4 py-2 rounded-xl border border-white/20 flex justify-between items-center">
-                      <span className="text-white font-medium text-sm">{image.alt}</span>
-                      <span className="text-white/80 text-xs px-2 py-1 bg-white/20 rounded-md">{image.category}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+
+                    {/* Polaroid Label */}
+                    {isPolaroid && (
+                      <div className="absolute bottom-2 md:bottom-3 left-2 md:left-4 right-2 md:right-4 text-center">
+                        <span className="font-heading font-bold text-slate-700 text-xs md:text-sm block truncate">
+                          {image.alt}
+                        </span>
+                        <span className="text-[8px] md:text-[10px] text-brand-lavender font-semibold tracking-wider uppercase mt-0.5 block">
+                          {image.category}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Zoom Icon for Polaroid on hover */}
+                    {isPolaroid && (
+                      <div className="absolute top-4 right-4 md:top-6 md:right-6 w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
+                        <ZoomIn className="w-3 h-3 md:w-4 md:h-4" />
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
             </AnimatePresence>
-          </motion.div>
+          </div>
         </div>
       </section>
 

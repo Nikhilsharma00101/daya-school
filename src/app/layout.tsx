@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${poppins.variable} ${fredoka.variable} font-sans min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased`}>
         <Navbar />
-        <main className="flex-grow flex flex-col pt-[72px]">
+        <main className="flex-grow flex flex-col pt-[160px]">
           {children}
         </main>
         <Footer />

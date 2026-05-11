@@ -60,9 +60,26 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Full Logo - Centered above navbar */}
       <div className={cn(
-        "container mx-auto px-4 md:px-6 transition-all duration-500",
-        isScrolled ? "pt-2" : "pt-4"
+        "flex justify-center transition-all duration-500 ease-in-out relative z-20",
+        isScrolled ? "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-32 pt-2"
+      )}>
+        <Link href="/" className="inline-block">
+          <Image 
+            src="/images/logo/logo-full.png" 
+            alt="Daya Little Step Public School Full Logo" 
+            width={350}
+            height={100}
+            className="h-28 w-auto object-contain"
+            priority
+          />
+        </Link>
+      </div>
+
+      <div className={cn(
+        "container mx-auto px-4 md:px-6 transition-all duration-500 relative z-10",
+        isScrolled ? "pt-2" : "pt-2 -mt-10"
       )}>
         {/* Main Navbar Container - Floating Island Style */}
         <div className="relative max-w-7xl mx-auto">
