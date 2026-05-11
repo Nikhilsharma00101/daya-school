@@ -19,14 +19,14 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dayaschool.edu.in"),
+  metadataBase: new URL("https://daya-school.vercel.app"),
   title: "Daya Little Step Public School",
   description: "A premium early education center focusing on holistic child development. Playway to 8th Class. Small Steps Towards a Bright Future.",
   keywords: ["School in Ghaziabad", "Preschool", "Primary School", "Daya Little Step", "Best School", "Education"],
   openGraph: {
     title: "Daya Little Step Public School",
     description: "A premium early education center focusing on holistic child development. Playway to 8th Class. Small Steps Towards a Bright Future.",
-    url: "https://dayaschool.edu.in",
+    url: "https://daya-school.vercel.app",
     siteName: "Daya Little Step Public School",
     locale: "en_IN",
     type: "website",
