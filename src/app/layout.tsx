@@ -19,8 +19,23 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dayaschool.edu.in"),
   title: "Daya Little Step Public School",
-  description: "Playway to 8th Class. Small Steps Towards a Bright Future. Play • Learn • Grow Together.",
+  description: "A premium early education center focusing on holistic child development. Playway to 8th Class. Small Steps Towards a Bright Future.",
+  keywords: ["School in Ghaziabad", "Preschool", "Primary School", "Daya Little Step", "Best School", "Education"],
+  openGraph: {
+    title: "Daya Little Step Public School",
+    description: "A premium early education center focusing on holistic child development. Playway to 8th Class. Small Steps Towards a Bright Future.",
+    url: "https://dayaschool.edu.in",
+    siteName: "Daya Little Step Public School",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daya Little Step Public School",
+    description: "A premium early education center focusing on holistic child development.",
+  },
 };
 
 export default function RootLayout({
